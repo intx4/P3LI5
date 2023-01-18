@@ -33,7 +33,7 @@ sed -i 's|MNC|'$MNC'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|MCC|'$MCC'|g' /UERANSIM/config/open5gs-ue.yaml
 
 sed -i 's|UE1_KI|'$UE1_KI'|g' /UERANSIM/config/open5gs-ue.yaml
-sed -i 's|UE1_OP|'$UE1_OP'|g' /UERANSIM/config/open5gs-ue.yaml
+sed -i 's|UE1_OPC|'$UE1_OPC'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|UE1_AMF|'$UE1_AMF'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|UE1_IMEISV|'$UE1_IMEISV'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|UE1_IMEI|'$UE1_IMEI'|g' /UERANSIM/config/open5gs-ue.yaml

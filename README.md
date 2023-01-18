@@ -28,12 +28,6 @@ git clone https://github.com/herlesupreeth/docker_open5gs
 cd docker_open5gs/base
 docker build --no-cache --force-rm -t docker_open5gs .
 
-cd ../ims_base
-docker build --no-cache --force-rm -t docker_kamailio .
-
-cd ../srslte
-docker build --no-cache --force-rm -t docker_srslte .
-
 cd ../ueransim
 docker build --no-cache --force-rm -t docker_ueransim .
 ```
@@ -44,22 +38,9 @@ docker build --no-cache --force-rm -t docker_ueransim .
 cd ..
 set -a
 source .env
-docker-compose build --no-cache
+# Build remaining services, use cached previously built services
+docker-compose build
 docker-compose up
-
-# srsRAN eNB
-docker-compose -f srsenb.yaml up -d && docker attach srsenb
-# srsRAN gNB
-docker-compose -f srsgnb.yaml up -d && docker attach srsgnb
-# srsRAN ZMQ based setup
-    # eNB
-    docker-compose -f srsenb_zmq.yaml up -d && docker attach srsenb_zmq
-    # gNB
-    docker-compose -f srsgnb_zmq.yaml up -d && docker attach srsgnb_zmq
-    # 4G UE
-    docker-compose -f srsue_zmq.yaml up -d && docker attach srsue_zmq
-    # 5G UE
-    docker-compose -f srsue_5g_zmq.yaml up -d && docker attach srsue_5g_zmq
 
 # UERANSIM gNB
 docker-compose -f nr-gnb.yaml up -d && docker attach nr_gnb
@@ -123,7 +104,7 @@ Username : admin
 Password : 1423
 ```
 
-Using Web UI, add a subscriber
+Using Web UI, add a subscriber --> you can login, open the browser console, and inspect the storage for the cookie ```connection.sid``` value and the session ```value```, and use them in the ```populate_db.py``` script. Pass ```-h``` for help
 
 ## srsLTE eNB settings
 
