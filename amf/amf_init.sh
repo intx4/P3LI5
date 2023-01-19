@@ -32,5 +32,28 @@ sed -i 's|SCP_IP|'$SCP_IP'|g' install/etc/open5gs/amf.yaml
 sed -i 's|MNC|'$MNC'|g' install/etc/open5gs/amf.yaml
 sed -i 's|MCC|'$MCC'|g' install/etc/open5gs/amf.yaml
 
+## install pyli5
+#apt-get install -y git 
+#git clone --recursive https://github.com/intx4/pyli5
+cp -R /mnt/amf/pyli5 .
+pip3 install -r pyli5/requirements.txt
+cp /mnt/amf/ief.json pyli5/pyli5/ief/config/ief.json
+
+
+chmod o+r $AMF_POI_LOG_PATH
+sed -i 's|AMF_NE_ID|'${AMF_NE_ID}'|g' pyli5/pyli5/ief/config/ief.json
+sed -i 's|AMF_NE_IP|'${AMF_NE_IP}'|g' pyli5/pyli5/ief/config/ief.json
+sed -i 's|AMF_NE_PORT|'${AMF_NE_PORT}'|g' pyli5/pyli5/ief/config/ief.json
+sed -i 's|AMF_NE_URL|'${AMF_NE_URL}'|g' pyli5/pyli5/ief/config/ief.json
+sed -i 's|AMF_POI_LOG_PATH|'${AMF_POI_LOG_PATH}'|g' pyli5/pyli5/ief/config/ief.json
+
+cd pyli5 && python3 -m pyli5.start_ief
+
+
+
+
+
+
+
 # Sync docker time
 #ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
