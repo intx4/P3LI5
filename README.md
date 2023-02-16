@@ -48,6 +48,12 @@ docker build --no-cache --force-rm -t docker_ueransim .
 cd ..
 set -a
 source .env
+
+# Deploys docker from scratch
+./reload.sh
+```
+
+```
 # Build remaining services, use cached previously built services
 docker-compose build
 
