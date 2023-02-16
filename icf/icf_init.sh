@@ -30,7 +30,6 @@
 
 ## install pyli5
 #apt-get install -y git 
-#git clone --recursive https://github.com/intx4/pyli5
 cp -R /mnt/li/pyli5 ~
 cp -R /mnt/pir ~
 pip3 install -r ~/pyli5/requirements.txt

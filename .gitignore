@@ -3,3 +3,5 @@ log/
 **/*.db
 **/*.db-shm
 **/*.db-wal
+pir/
+li/

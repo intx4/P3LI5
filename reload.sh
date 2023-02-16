@@ -32,13 +32,7 @@ rm var/log/boot.log
 touch var/log/boot.log
 
 sudo docker system prune -f
-# Reloads pir and pyli5 libraries from docker_open5gs
-echo "Loading pir module..."
-cp -r ../pir . > /dev/null 2>&1
-echo "Ok"
-echo "Loading pyli5 module..."
-cp -r ../pyli5 li/ > /dev/null 2>&1
-echo "Ok"
+
 echo "Deploying Core Containers..."
 sudo docker-compose up --force-recreate -d 2>&1 | tee var/log/boot.log
 echo "Estimated time to complete: ${_end} seconds"
