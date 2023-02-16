@@ -67,7 +67,7 @@ echo "Starting LEA Python Proxy..."
 cd ~/pyli5/src && python3 start_lea.py &
 echo "Done!"
 echo "Starting PIR client..."
-cd root/pir/ && && go build && ./pir --client &
+cd root/pir/ && go build && ./pir --client &
 echo "Done"
 echo "Starting frontend"
 cd /root/pir/client/frontend && serve -s build -l $LEA_UI_PORT
