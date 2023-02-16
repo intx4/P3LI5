@@ -34,7 +34,8 @@ Docker host machine
 
 ```
 git clone --recursive https://github.com/intx4/P3LI5
-cd docker_open5gs/base
+cd P3LI5
+cd base
 docker build --no-cache --force-rm -t docker_open5gs .
 
 cd ../ueransim
@@ -49,6 +50,8 @@ set -a
 source .env
 # Build remaining services, use cached previously built services
 docker-compose build
+
+# 5G Core
 docker-compose up
 
 # UERANSIM gNB
@@ -58,7 +61,7 @@ docker-compose -f nr-gnb.yaml up -d && docker attach nr_gnb
 docker-compose -f nr-ue.yaml up -d && docker attach nr_ue
 ```
 
-## Configuration
+## Configuration (not needed for standard setup)
 
 For the quick run (eNB/gNB, CN in same docker network), edit only the following parameters in .env as per your setup
 
