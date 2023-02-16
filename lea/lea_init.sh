@@ -71,8 +71,7 @@ cd root/pir/ && go build && ./pir --client &
 echo "Done"
 echo "Starting frontend"
 cd /root/pir/client/frontend && serve -s build -l $LEA_UI_PORT
-#forever sleep
-tail -f /dev/null
+
 
 # Sync docker time
 #ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
