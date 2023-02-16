@@ -31,7 +31,6 @@ rm var/log/boot.log
 touch var/log/boot.log
 
 #sudo docker system prune -f
-sudo docker-compose logs -f -t >> var/log/boot.log
 echo "Building Core Containers...(cached)"
 sudo docker-compose build
 echo "Deploying Core Containers..."
@@ -57,4 +56,4 @@ done
 echo "Ok"
 echo "[*] Web UI: "
 echo "    --> http://localhost:${LEA_UI_PORT}"
-tail -f /dev/null
+sudo docker-compose logs -f -t >> var/log/boot.log
