@@ -1,11 +1,13 @@
 version: '3'
 services:
   nr_ue:
-    image: docker_ueransim
+    #image: docker_ueransim
+    build: ./ueransim
     container_name: nr_ue
     stdin_open: true
     tty: true
     volumes:
+      - ./li/pyli5:/mnt/li/pyli5
       - ./ueransim:/mnt/ueransim
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

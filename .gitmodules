@@ -1,0 +1,6 @@
+[submodule "pir"]
+	path = pir
+	url = https://github.com/intx4/pir.git
+[submodule "li/pyli5"]
+	path = li/pyli5
+	url = https://github.com/intx4/pyli5

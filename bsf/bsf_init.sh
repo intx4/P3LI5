@@ -35,3 +35,4 @@ sed -i 's|MONGO_IP|'$MONGO_IP'|g' install/etc/open5gs/bsf.yaml
 
 # Sync docker time
 #ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+

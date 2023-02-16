@@ -24,13 +24,27 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-FROM ubuntu:focal as builder
+
+# Build final image
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
-
 # Install updates and dependencies
-RUN apt-get update && \
-    apt-get -y install \
+RUN apt-get update && apt-get upgrade -y
+# Install python
+RUN : \
+    && apt-get install -y --no-install-recommends \
+        software-properties-common \
+    && add-apt-repository -y ppa:deadsnakes \
+    && apt-get install -y --no-install-recommends \
+        python3.7-dev \
+    && apt-get -y install python3-pip \
+    && apt-get install -y pkg-config \
+    && :
+
+RUN apt-get autoremove -y && apt-get autoclean
+# Install updates and dependencies
+RUN apt-get -y install \
         make \
         g++ \
         libsctp-dev \
@@ -58,14 +72,11 @@ RUN version=3.20 && \
     cmake --version
 
 # Clone and build UERANSIM
-RUN git clone https://github.com/aligungr/UERANSIM && \
-    cd UERANSIM && git checkout tags/v3.2.6 && \
+RUN git clone https://github.com/intx4/UERANSIM && \
+    cd UERANSIM && \
     make -j`nproc`
 
-# Build final image
-FROM ubuntu:focal
-
-ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get autoremove -y && apt-get autoclean
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -79,11 +90,11 @@ RUN apt-get update && \
         iputils-ping && \
     apt-get autoremove -y && apt-get autoclean
 
-COPY --from=builder /UERANSIM/build /UERANSIM/build
-COPY --from=builder /UERANSIM/config /UERANSIM/config
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
-# Set the working directory to UERANSIM
-WORKDIR UERANSIM/build
+#COPY --from=builder /UERANSIM/build /UERANSIM/build
+#COPY --from=builder /UERANSIM/config /UERANSIM/config
 
 COPY ueransim_image_init.sh /
 CMD /ueransim_image_init.sh

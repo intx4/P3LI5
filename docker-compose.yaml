@@ -336,6 +336,8 @@ services:
       - udr
       - pcf
       - bsf
+      # LI
+      - admf
     container_name: amf
     env_file:
       - .env
@@ -343,6 +345,7 @@ services:
       - COMPONENT_NAME=amf-1
     volumes:
       - ./amf:/mnt/amf
+      - ./li:/mnt/li
       - ./log:/open5gs/install/var/log/open5gs
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -350,8 +353,11 @@ services:
       - "38412/sctp"
       - "7777/tcp"
       - "9091/tcp"
-    # ports:
-    #   - "38412:38412/sctp"
+      - "2222/tcp" #xem
+    #  - "50011/tcp"
+    ports:
+    #  - "38412:38412/sctp"
+      - "50011:50011/tcp"
     networks:
       default:
         ipv4_address: ${AMF_IP}
@@ -394,6 +400,71 @@ services:
     networks:
       default:
         ipv4_address: ${DNS_IP}
+  #LI
+  admf:
+    build: ./admf
+    image: docker_admf
+    container_name: admf
+    env_file:
+      - .env
+    volumes:
+      - ./admf:/mnt/admf
+      - ./li:/mnt/li
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    expose:
+      - "${LIPF_H1_PORT}/tcp" #h1
+      - "${IQF_HIQR_PORT}/tcp" #hiqr
+    networks:
+      default:
+        ipv4_address: ${ADMF_IP}
+  icf:
+    build: ./icf
+    image: docker_icf
+    container_name: icf
+    depends_on:
+      - admf
+      - amf
+    env_file:
+      - .env
+    volumes:
+      - ./icf:/mnt/icf
+      - ./li:/mnt/li
+      - ./pir:/mnt/pir
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    expose:
+      - "${ICF_XER_PORT}/tcp" #xer
+      - "${ICF_XQR_PORT}/tcp" #xqr
+    networks:
+      default:
+        ipv4_address: ${ICF_IP}
+  lea:
+    build: ./lea
+    image: docker_lea
+    container_name: lea
+    depends_on:
+      - admf
+      - icf
+    env_file:
+      - .env
+    volumes:
+      - ./lea:/mnt/lea
+      - ./li:/mnt/li
+      - ./pir:/mnt/pir
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    expose:
+      - "${LEA_HIQR_PORT}/tcp"
+      - "${LEA_INTERCEPTION_PORT}/tcp"
+      - "${LEA_UI_PORT}/tcp"
+    ports:
+      - "${LEA_UI_PORT}:${LEA_UI_PORT}/tcp" # access web ui from host
+      - "${LEA_INTERCEPTION_PORT}:${LEA_INTERCEPTION_PORT}/tcp" # web host browser to ws backend
+      - "30000:3000/tcp" #npm test
+    networks:
+      default:
+        ipv4_address: ${LEA_IP}
 networks:
   default:
     ipam:

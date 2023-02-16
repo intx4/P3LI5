@@ -25,7 +25,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 export IP_ADDR=$(awk 'END{print $1}' /etc/hosts)
 
 cp /mnt/ueransim/open5gs-ue.yaml /UERANSIM/config/open5gs-ue.yaml
@@ -39,6 +38,23 @@ sed -i 's|UE1_IMEISV|'$UE1_IMEISV'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|UE1_IMEI|'$UE1_IMEI'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|UE1_IMSI|'$UE1_IMSI'|g' /UERANSIM/config/open5gs-ue.yaml
 sed -i 's|NR_GNB_IP|'$NR_GNB_IP'|g' /UERANSIM/config/open5gs-ue.yaml
+
+cp -R /mnt/li/pyli5 ~
+cat ~/pyli5/requirements.txt | xargs -n 1 pip install #skip failure on single package
+sed -i 's|LEA_IP|'${LEA_IP}'|g' ~/pyli5/src/pyli5/catcher/catcher.json
+sed -i 's|LEA_INTERCEPTION_PORT|'${LEA_INTERCEPTION_PORT}'|g' ~/pyli5/src/pyli5/catcher/catcher.json
+
+mkdir /UERANSIM/var
+mkdir /UERANSIM/var/log
+touch /UERANSIM/var/log/nr_ue.log
+
+echo "Starting catcher..."
+cd ~/pyli5/src && python3 start_catcher.py &
+echo "Done"
+sleep 1
+echo "Starting 100 UEs..."
+/UERANSIM/build/nr-ue -c UERANSIM/config/open5gs-ue.yaml -n 100 --tempo 1000 &>> /UERANSIM/var/log/nr_ue.log
+
 
 # Sync docker time
 #ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

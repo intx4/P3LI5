@@ -2,7 +2,7 @@
 
 # BSD 2-Clause License
 
-# Copyright (c) 2020, Supreeth Herle
+# Copyright (c) 2020, Intoci Francesco
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
@@ -25,30 +25,34 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 apt-get install lsof
 apt-get install net-tools
 
-cp /mnt/amf/amf.yaml install/etc/open5gs
-sed -i 's|AMF_IP|'$AMF_IP'|g' install/etc/open5gs/amf.yaml
-sed -i 's|SCP_IP|'$SCP_IP'|g' install/etc/open5gs/amf.yaml
-sed -i 's|MNC|'$MNC'|g' install/etc/open5gs/amf.yaml
-sed -i 's|MCC|'$MCC'|g' install/etc/open5gs/amf.yaml
 
 ## install pyli5
 #apt-get install -y git 
 #git clone --recursive https://github.com/intx4/pyli5
 cp -R /mnt/li/pyli5 ~
 pip3 install -r ~/pyli5/requirements.txt
+sed -i 's|LIPF_H1_ADDRESS|'${ADMF_IP}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|LIPF_H1_PORT|'${LIPF_H1_PORT}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|ADMF_ID|'${ADMF_ID}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|IEF_XEM_ADDR|'${AMF_IP}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|IEF_XEM_PORT|'${IEF_XEM_PORT}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|IEF_XEM_URL|'${IEF_XEM_URL}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|IEF_XEM_ID|'${IEF_XEM_ID}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|ICF_XER_ADDR|'${ICF_IP}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|ICF_XER_PORT|'${ICF_XER_PORT}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|IQF_HIQR_ADDR|'${ADMF_IP}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|IQF_HIQR_PORT|'${IQF_HIQR_PORT}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|ICF_XQR_ADDR|'${ICF_IP}'|g' ~/pyli5/src/pyli5/admf/admf.json
+sed -i 's|ICF_XQR_PORT|'${ICF_XQR_PORT}'|g' ~/pyli5/src/pyli5/admf/admf.json
 
-chmod o+r $IEF_POI_LOG_PATH
-sed -i 's|IEF_NE_ID|'${IEF_NE_ID}'|g' ~/pyli5/src/pyli5/ief/ief.json
-sed -i 's|IEF_NE_IP|'${AMF_IP}'|g' ~/pyli5/src/pyli5/ief/ief.json
-sed -i 's|IEF_XEM_PORT|'${IEF_XEM_PORT}'|g' ~/pyli5/src/pyli5/ief/ief.json
-sed -i 's|IEF_XEM_URL|'${IEF_XEM_URL}'|g' ~/pyli5/src/pyli5/ief/ief.json
-sed -i 's|IEF_POI_LOG_PATH|'${IEF_POI_LOG_PATH}'|g' ~/pyli5/src/pyli5/ief/ief.json
-
-cd ~/pyli5/src/ && python3 start_ief.py &
-
+echo "Starting ADMF application..."
+cd ~/pyli5/src/ && python3 start_admf.py &
+echo "Done!"
+tail -f /dev/null
 
 # Sync docker time
 #ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
