@@ -29,7 +29,7 @@ Docker host machine
 
 * Mandatory requirements:
 	* [docker-ce](https://docs.docker.com/install/linux/docker-ce/ubuntu)
-	* [docker-compose](https://docs.docker.com/compose)
+	* [docker-compose](https://docs.docker.com/compose) (You need at least Docker Engine 17.06.0 and docker-compose 1.17+)
 
 
 ```
@@ -109,6 +109,11 @@ Password : 1423
 ```
 
 Using Web UI, add a subscriber --> you can login, open the browser console, and inspect the storage for the cookie ```connection.sid``` value and the session ```value```, and use them in the ```populate_db.py``` script. Pass ```-h``` for help
+Example (add 1000 users):
+```
+python3 populate_db.py -c s%3AHSSnq7NdPPWGmWKI0q0lQITV5knUV3tn.p6D8CaL4cKsF%2BtoY2%2BLH2IeRMaUvKeX01BR1kb6P8mU -s '{"clientMaxAge":60000,"csrfToken":"4Aa676KYOez1Ylye3d5jJXid8QSf1SCOKa7RQ=","user":{"_id":"63ee371aedf72c1630020681","roles":["admin"],"username":"admin","__v":0},"authToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzZWUzNzFhZWRmNzJjMTYzMDAyMDY4MSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNjc2NTY2OTY4fQ.mGR4DgDrtrfzZGcLarOK7ubEbI58JwJvJz7RYhd4dbA","expires":1676567028601}' -i 999700154321050 -n 1000
+
+```
 
 ## Not supported
 - IPv6 usage in Docker
