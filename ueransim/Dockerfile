@@ -72,7 +72,7 @@ RUN version=3.20 && \
     cmake --version
 
 # Clone and build UERANSIM
-RUN git clone https://github.com/intx4/UERANSIM && \
+RUN git clone https://github.com/intx4/ueransimLI UERANSIM && \
     cd UERANSIM && \
     make -j`nproc`
 

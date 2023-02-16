@@ -33,7 +33,7 @@ Docker host machine
 
 
 ```
-git clone https://github.com/intx4/p3li5
+git clone --recursive https://github.com/intx4/P3LI5
 cd docker_open5gs/base
 docker build --no-cache --force-rm -t docker_open5gs .
 
