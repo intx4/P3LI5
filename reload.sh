@@ -31,8 +31,8 @@ mkdir var/log > /dev/null 2>&1
 rm var/log/boot.log
 touch var/log/boot.log
 
-sudo docker system prune -f
-
+#sudo docker system prune -f
+sudo docker network create docker_open5gs_default --subnet=${TEST_NETWORK}
 echo "Deploying Core Containers..."
 sudo docker-compose up --force-recreate -d 2>&1 | tee var/log/boot.log
 echo "Estimated time to complete: ${_end} seconds"
@@ -55,5 +55,5 @@ do
 done
 echo "Ok"
 echo "[*] Web UI: "
-echo "    --> http://localhost:8080"
+echo "    --> http://localhost:${LEA_UI_PORT}"
 tail -f /dev/null
