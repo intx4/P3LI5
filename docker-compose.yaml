@@ -467,6 +467,7 @@ services:
         ipv4_address: ${LEA_IP}
 networks:
   default:
+    name: docker_open5gs_default
     ipam:
       config:
         - subnet: ${TEST_NETWORK}
