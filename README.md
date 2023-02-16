@@ -1,18 +1,29 @@
-# docker_open5gs
-Docker files to build and run open5gs in a docker
+# P3LI5
+Enabling Practical and Privacy-Preserving Lawful Interception on 5G SA Core with Lattice-Based Weakly Private Information Retrieval
+
+## MODULES
+The project builds on several submodules
+
+### P3LI5
+This repo, forked from ```docker_open5gs``` -> Docker files to build and run open5gs in a docker
+
+### PIR
+[Implementation of a WPIR scheme based on BFV](https://github.com/intx4/pir)
+
+### PYLI5
+[Minimal PoC for LI on open5gs core in Python](https://github.com/intx4/pyli5)
+
+### open5gsLI
+[Forked from open5gs to enable logging of Association events at AMF](https://github.com/intx4/open5gsLI)
+
+### UERANSIMLI
+[Forked from UERANSIM to enable logging of registration traces at UEs](https://github.com/intx4/UERANSIMLI)
 
 ## Tested Setup
 
 Docker host machine
 
-- Ubuntu 18.04 and 20.04
-
-SDRs tested with srsLTE eNB
-
-- Ettus USRP B210
-- LimeSDR Mini v1.3
-
-UERANSIM (gNB + UE) simulator
+- Ubuntu 20.04
 
 ## Build and Execution Instructions
 
@@ -21,10 +32,8 @@ UERANSIM (gNB + UE) simulator
 	* [docker-compose](https://docs.docker.com/compose)
 
 
-Clone repository and build base docker image of open5gs, kamailio, ueransim
-
 ```
-git clone https://github.com/herlesupreeth/docker_open5gs
+git clone https://github.com/intx4/p3li5
 cd docker_open5gs/base
 docker build --no-cache --force-rm -t docker_open5gs .
 
@@ -92,4 +101,5 @@ Using Web UI, add a subscriber --> you can login, open the browser console, and 
 
 ## Not supported
 - IPv6 usage in Docker
+
 
