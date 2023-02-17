@@ -29,8 +29,7 @@ Docker host machine
 
 * Mandatory requirements:
 	* [docker-ce](https://docs.docker.com/install/linux/docker-ce/ubuntu)
-	* [docker-compose](https://docs.docker.com/compose) (You need at least Docker Engine 17.06.0 and docker-compose 1.17+)
-
+	* [docker-compose](https://docs.docker.com/compose) (tested with version 1.25.01)
 
 ```
 git clone --recursive https://github.com/intx4/P3LI5
