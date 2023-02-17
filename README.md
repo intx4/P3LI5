@@ -47,17 +47,17 @@ cd ../ueransim
 docker build --no-cache --force-rm -t docker_ueransim .
 ```
 
-### Build and Run using docker-compose
 
+### Automatic Deployment 
 ```
 cd ..
 set -a
 source .env
 
-# Deploys docker from scratch
-./reload.sh
+./deploy.sh
 ```
-**It can happen that the ```docker_open5gs_default``` has conflicts with another already allocated pool. In that case you should change the subnet and IPs in ```.env``` and re-build the containers.**
+
+### Build and Run using docker-compose (alternative to automatic deployment)
 
 ```
 # Build remaining services, use cached previously built services
@@ -72,7 +72,10 @@ docker-compose -f nr-gnb.yaml up -d && docker attach nr_gnb
 # UERANSIM NR-UE
 docker-compose -f nr-ue.yaml up -d && docker attach nr_ue
 ```
-**Before using the demo, you have to register the subscribers in the Database. See following section**
+
+#### Warnings
+- **It can happen that the ```docker_open5gs_default``` has conflicts with another already allocated pool. In that case you should change the subnet and IPs in ```.env``` and re-build the containers.**
+- **Before using the demo, you have to register the subscribers in the Database. See following section**
 
 ## Configuration (not needed for standard setup)
 

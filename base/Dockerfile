@@ -116,8 +116,11 @@ COPY --from=builder /open5gs/install/include /open5gs/install/include
 COPY --from=builder /open5gs/install/lib /open5gs/install/lib
 COPY --from=builder /open5gs/webui /open5gs/webui
 
-# Set the working directory to open5gs
-WORKDIR open5gs
+
+RUN cp -R /mnt/li/pyli5 /root/pyli5
+RUN pip3 install -r /root/pyli5/requirements.txt
+
+WORKDIR /open5gs
 
 COPY open5gs_init.sh /
 CMD /open5gs_init.sh
