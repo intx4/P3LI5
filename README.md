@@ -25,6 +25,12 @@ Docker host machine
 
 - Ubuntu 20.04
 
+### Renote setup
+In case of deployment on a remove VM, it is needed to setup the following SSH tunnel:
+```
+ssh user@remote_IP -L 8080:127.0.0.1:8080 -L 3000:127.0.0.1:3000 -L 8484:127.0.0.1:8484
+```
+
 ## Build and Execution Instructions
 
 * Mandatory requirements:

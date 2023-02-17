@@ -59,9 +59,8 @@ RUN apt-get update && \
         libnghttp2-dev \
         libtins-dev \
         libidn11-dev \
-        libtalloc-dev \
+        libtalloc-dev 
         
-
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
 
 # Get open5gs code and install
