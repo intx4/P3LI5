@@ -1,5 +1,5 @@
 # P3LI5
-Enabling Practical and Privacy-Preserving Lawful Interception on 5G SA Core with Lattice-Based Weakly Private Information Retrieval
+Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical Privacy-Preserving Lawful Interception in 5G SA Core with Lattice-Based Weakly Private Information Retrieval.
 
 ## MODULES
 The project builds on several submodules
