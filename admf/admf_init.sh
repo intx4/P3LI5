@@ -33,8 +33,9 @@ apt-get install net-tools
 ## install pyli5
 #apt-get install -y git 
 #git clone --recursive https://github.com/intx4/pyli5
-cp -R /mnt/li/pyli5 ~
-pip3 install -r ~/pyli5/requirements.txt
+#cp -R /mnt/li/pyli5 ~
+#pip3 install -r ~/pyli5/requirements.txt
+
 sed -i 's|LIPF_H1_ADDRESS|'${ADMF_IP}'|g' ~/pyli5/src/pyli5/admf/admf.json
 sed -i 's|LIPF_H1_PORT|'${LIPF_H1_PORT}'|g' ~/pyli5/src/pyli5/admf/admf.json
 sed -i 's|ADMF_ID|'${ADMF_ID}'|g' ~/pyli5/src/pyli5/admf/admf.json
