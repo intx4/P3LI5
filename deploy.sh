@@ -43,9 +43,9 @@ do
 done
 echo "Ok"
 echo "Deploying RAN Containers..."
-sudo docker-compose -f nr-gnb.yaml up -d 2>&1 | tee var/log/boot.log
+sudo docker-compose -f nr-gnb.yaml up --force-recreate -d 2>&1 | tee var/log/boot.log
 sleep 2
-sudo docker-compose -f nr-ue.yaml up -d 2>&1 | tee var/log/boot.log
+sudo docker-compose -f nr-ue.yaml up -d --force-recreate -d 2>&1 | tee var/log/boot.log
 _end=60
 echo "Estimated time to complete: ${_end} seconds"
 for number in $(seq ${_start} ${_end})
