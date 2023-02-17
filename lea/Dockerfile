@@ -38,4 +38,10 @@ RUN : \
 && npm --version \
 && :
 RUN npm install -g serve
+
+# pir & pyli5
+COPY /mnt/pir /root/pir
+COPY /mnt/li/pyli5 /root/pyli5
+RUN pip3 install -r /root/pyli5/requirements.txt
+RUN cd /root/pir && go build && cd /
 CMD /mnt/lea/lea_init.sh

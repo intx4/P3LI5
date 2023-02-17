@@ -15,5 +15,6 @@ RUN : \
     && :
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
-
+COPY /mnt/li/pyli5 /root/pyli5
+RUN pip3 install -r /root/pyli5/requirements.txt
 CMD /mnt/admf/admf_init.sh

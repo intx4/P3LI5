@@ -35,9 +35,9 @@
 ## install pyli5
 #apt-get install -y git config
 #git clone --recursive https://github.com/intx4/pyli5
-cp -R /mnt/li/pyli5 ~
-cp -R /mnt/pir ~
-pip3 install -r ~/pyli5/requirements.txt
+#cp -R /mnt/li/pyli5 ~
+#cp -R /mnt/pir ~
+#pip3 install -r ~/pyli5/requirements.txt
 
 sed -i 's|LEA_IP|'${LEA_IP}'|g' ~/pyli5/src/pyli5/lea/client.json
 sed -i 's|LEA_ID|'${LEA_ID}'|g' ~/pyli5/src/pyli5/lea/client.json
@@ -67,7 +67,7 @@ echo "Starting LEA Python Proxy..."
 cd ~/pyli5/src && python3 start_lea.py &
 echo "Done!"
 echo "Starting PIR client..."
-cd root/pir/ && go build && ./pir --client &
+cd root/pir/ && ./pir --client &
 echo "Done"
 echo "Starting frontend"
 cd /root/pir/client/frontend && serve -s build -l $LEA_UI_PORT

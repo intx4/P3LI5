@@ -23,7 +23,7 @@ printf "\r[${_fill// /#}${_empty// /-}] ${_progress}%%"
 _start=1
 
 # This accounts as the "totalState" variable for the ProgressBar function
-_end=120
+_end=60
 
 mkdir var > /dev/null 2>&1
 mkdir var/log > /dev/null 2>&1
@@ -31,6 +31,7 @@ rm var/log/boot.log
 touch var/log/boot.log
 
 #sudo docker system prune -f
+sudo docker-compose logs -f -t >> var/log/boot.log &
 echo "Building Core Containers...(cached)"
 sudo docker-compose build
 echo "Deploying Core Containers..."
@@ -46,7 +47,7 @@ echo "Deploying RAN Containers..."
 sudo docker-compose -f nr-gnb.yaml up --force-recreate -d 2>&1 | tee var/log/boot.log
 sleep 2
 sudo docker-compose -f nr-ue.yaml up -d --force-recreate -d 2>&1 | tee var/log/boot.log
-_end=60
+_end=30
 echo "Estimated time to complete: ${_end} seconds"
 for number in $(seq ${_start} ${_end})
 do
@@ -56,5 +57,3 @@ done
 echo "Ok"
 echo "[*] Web UI: "
 echo "    --> http://localhost:${LEA_UI_PORT}"
-sudo docker-compose logs -f -t >> var/log/boot.log
-
