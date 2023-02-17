@@ -42,6 +42,19 @@ do
     ProgressBar ${number} ${_end}
 done
 echo "Ok"
+echo "Deploying RAN Containers..."
+sudo docker-compose -f nr-gnb.yaml up -d 2>&1 | tee var/log/boot.log
+sleep 2
+sudo docker-compose -f nr-ue.yaml up -d 2>&1 | tee var/log/boot.log
+_end=60
+echo "Estimated time to complete: ${_end} seconds"
+for number in $(seq ${_start} ${_end})
+do
+    sleep 1
+    ProgressBar ${number} ${_end}
+done
+echo "Ok"
 echo "[*] Web UI: "
 echo "    --> http://localhost:${LEA_UI_PORT}"
 sudo docker-compose logs -f -t >> var/log/boot.log
+
