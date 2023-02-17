@@ -31,4 +31,9 @@ ENV PATH=$PATH:/usr/local/go/bin:/venv/bin
 ENV PYTHONPATH=$PYTHONPATH:/root/pyli5/src
 ENV GOPATH=$HOME
 
+COPY /mnt/pir /root/pir
+COPY /mnt/li/pyli5 /root/pyli5
+RUN pip3 install -r /root/pyli5/requirements.txt
+RUN cd /root/pir && go build && cd /
+
 CMD /mnt/icf/icf_init.sh

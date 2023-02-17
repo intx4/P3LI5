@@ -30,9 +30,9 @@
 
 ## install pyli5
 #apt-get install -y git 
-cp -R /mnt/li/pyli5 ~
-cp -R /mnt/pir ~
-pip3 install -r ~/pyli5/requirements.txt
+#cp -R /mnt/li/pyli5 ~
+#cp -R /mnt/pir ~
+#pip3 install -r ~/pyli5/requirements.txt
 
 
 sed -i 's|ICF_XER_ADDR|'${ICF_IP}'|g' ~/pyli5/src/pyli5/icf/server.json
