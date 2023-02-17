@@ -25,8 +25,8 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-cp -R /mnt/li/pyli5 ~
-pip3 install -r ~/pyli5/requirements.txt
+#cp -R /mnt/li/pyli5 ~
+#pip3 install -r ~/pyli5/requirements.txt
 
 cp /mnt/amf/amf.yaml install/etc/open5gs
 sed -i 's|AMF_IP|'$AMF_IP'|g' install/etc/open5gs/amf.yaml

@@ -402,7 +402,9 @@ services:
         ipv4_address: ${DNS_IP}
   #LI
   admf:
-    build: ./admf
+    build:
+      context: .
+      dockerfile: ./admf/Dockerfile
     image: docker_admf
     container_name: admf
     env_file:
@@ -419,7 +421,9 @@ services:
       default:
         ipv4_address: ${ADMF_IP}
   icf:
-    build: ./icf
+    build:
+      context: .
+      dockerfile: icf/Dockerfile
     image: docker_icf
     container_name: icf
     depends_on:
@@ -440,7 +444,9 @@ services:
       default:
         ipv4_address: ${ICF_IP}
   lea:
-    build: ./lea
+    build:
+      context: .
+      dockerfile: lea/Dockerfile
     image: docker_lea
     container_name: lea
     depends_on:

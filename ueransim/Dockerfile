@@ -95,8 +95,8 @@ ENV LANG=C.UTF-8
 
 #COPY --from=builder /UERANSIM/build /UERANSIM/build
 #COPY --from=builder /UERANSIM/config /UERANSIM/config
-RUN cp -R /mnt/li/pyli5 /root/pyli5
+COPY li/pyli5 /root/pyli5
 RUN pip3 install -r /root/pyli5/requirements.txt
 
-COPY ueransim_image_init.sh /
+COPY ueransim/ueransim_image_init.sh /
 CMD /ueransim_image_init.sh

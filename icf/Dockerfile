@@ -31,8 +31,8 @@ ENV PATH=$PATH:/usr/local/go/bin:/venv/bin
 ENV PYTHONPATH=$PYTHONPATH:/root/pyli5/src
 ENV GOPATH=$HOME
 
-RUN cp -R /mnt/pir /root/pir
-RUN cp -R /mnt/li/pyli5 /root/pyli5
+COPY pir root/pir
+COPY li/pyli5 /root/pyli5
 RUN pip3 install -r /root/pyli5/requirements.txt
 RUN cd /root/pir && go build && cd /
 

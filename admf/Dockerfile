@@ -4,6 +4,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install updates and dependencies
 RUN apt-get update && apt-get upgrade -y
+RUN apt-get install lsof
+RUN apt-get install net-tools
 # install python
 RUN : \
     && apt-get install -y --no-install-recommends \
@@ -15,6 +17,6 @@ RUN : \
     && :
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
-COPY mnt/li/pyli5 /root/pyli5
+COPY li/pyli5 /root/pyli5
 RUN pip3 install -r /root/pyli5/requirements.txt
 CMD /mnt/admf/admf_init.sh
