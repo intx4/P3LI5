@@ -40,11 +40,9 @@ ssh user@remote_IP -L 8080:127.0.0.1:8080 -L 3000:127.0.0.1:3000 -L 8484:127.0.0
 ```
 git clone --recursive https://github.com/intx4/P3LI5
 cd P3LI5
-cd base
-docker build --no-cache --force-rm -t docker_open5gs .
-
-cd ../ueransim
-docker build --no-cache --force-rm -t docker_ueransim .
+sudo docker build -f base/Dockerfile --no-cache --force-rm -t docker_open5gs .
+sudo docker build -f ueransim/Dockerfile --no-cache --force-rm -t docker_ueransim .
+sudo docker-compose build
 ```
 
 
