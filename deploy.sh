@@ -34,9 +34,16 @@ set -a
 source .env
 
 #sudo docker system prune -f
-sudo docker-compose logs -f -t >> var/log/boot.log &
-echo "Building Core Containers...(cached)"
+
+echo "Building Containers...(cached)"
+sudo docker build -f base/Dockerfile -t docker_open5gs .
+sudo docker build -f ueransim/Dockerfile -t docker_ueransim .
 sudo docker-compose build
+
+
+sudo docker-compose logs -f -t >> var/log/boot.log &
+
+
 echo "Deploying Core Containers..."
 sudo docker-compose up --force-recreate -d 2>&1 | tee var/log/boot.log
 echo "Estimated time to complete: ${_end} seconds"

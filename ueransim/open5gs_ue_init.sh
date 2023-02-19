@@ -51,7 +51,7 @@ touch /UERANSIM/var/log/nr_ue.log
 echo "Starting catcher..."
 cd ~/pyli5/src && python3 start_catcher.py &
 echo "Done"
-sleep 1
+sleep 2
 echo "Starting 100 UEs..."
 /UERANSIM/build/nr-ue -c UERANSIM/config/open5gs-ue.yaml -n 100 --tempo 1010 &>> /UERANSIM/var/log/nr_ue.log
 
