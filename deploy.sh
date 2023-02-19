@@ -30,6 +30,9 @@ mkdir var/log > /dev/null 2>&1
 rm var/log/boot.log
 touch var/log/boot.log
 
+set -a
+source .env
+
 #sudo docker system prune -f
 sudo docker-compose logs -f -t >> var/log/boot.log &
 echo "Building Core Containers...(cached)"
