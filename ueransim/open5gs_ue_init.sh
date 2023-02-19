@@ -53,7 +53,7 @@ cd ~/pyli5/src && python3 start_catcher.py &
 echo "Done"
 sleep 1
 echo "Starting 100 UEs..."
-/UERANSIM/build/nr-ue -c UERANSIM/config/open5gs-ue.yaml -n 100 --tempo 800 &>> /UERANSIM/var/log/nr_ue.log
+/UERANSIM/build/nr-ue -c UERANSIM/config/open5gs-ue.yaml -n 100 --tempo 1010 &>> /UERANSIM/var/log/nr_ue.log
 
 
 # Sync docker time
