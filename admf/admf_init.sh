@@ -26,10 +26,6 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-apt-get install lsof
-apt-get install net-tools
-
-
 ## install pyli5
 #apt-get install -y git 
 #git clone --recursive https://github.com/intx4/pyli5
