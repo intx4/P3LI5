@@ -25,7 +25,7 @@ Docker host machine
 
 - Ubuntu 20.04
 
-### Renote setup
+### Remote setup
 In case of deployment on a remove VM, it is needed to setup the following SSH tunnel:
 ```
 ssh user@remote_IP -L 8080:127.0.0.1:8080 -L 3000:127.0.0.1:3000 -L 8484:127.0.0.1:8484
@@ -49,27 +49,10 @@ sudo docker-compose build
 ### Automatic Deployment 
 ```
 cd ..
-set -a
-source .env
-
 ./deploy.sh
 ```
-
-### Build and Run using docker-compose (alternative to automatic deployment)
-
-```
-# Build remaining services, use cached previously built services
-docker-compose build
-
-# 5G Core
-docker-compose up
-
-# UERANSIM gNB
-docker-compose -f nr-gnb.yaml up -d && docker attach nr_gnb
-
-# UERANSIM NR-UE
-docker-compose -f nr-ue.yaml up -d && docker attach nr_ue
-```
+The script will automatically set the environment variables, build the containers from cache, and start them.
+Use ```sudo docker-compose down``` for stopping.
 
 #### Warnings
 - **It can happen that the ```docker_open5gs_default``` has conflicts with another already allocated pool. In that case you should change the subnet and IPs in ```.env``` and re-build the containers.**
@@ -120,6 +103,12 @@ Example (add 1000 users):
 python3 populate_db.py -c s%3AHSSnq7NdPPWGmWKI0q0lQITV5knUV3tn.p6D8CaL4cKsF%2BtoY2%2BLH2IeRMaUvKeX01BR1kb6P8mU -s '{"clientMaxAge":60000,"csrfToken":"4Aa676KYOez1Ylye3d5jJXid8QSf1SCOKa7RQ=","user":{"_id":"63ee371aedf72c1630020681","roles":["admin"],"username":"admin","__v":0},"authToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzZWUzNzFhZWRmNzJjMTYzMDAyMDY4MSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNjc2NTY2OTY4fQ.mGR4DgDrtrfzZGcLarOK7ubEbI58JwJvJz7RYhd4dbA","expires":1676567028601}' -i 999700154321050 -n 1000
 
 ```
+
+## DEMO
+The demo consists in a Proof-of-concept for our system. You will impersonate some Law Enforcement trying to privately resolve identifiers from network captures.
+The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` you will access a GUI to be used by the law enforcement. You can play around in the GUI by observing the intercepted traffic* and sending resolution request with dynamic level of privacy.
+
+* the traffic is not actually sniffed on the network (e.g using Scapy or tcpdump) due to problem parsing the NAS protocol. Instead we rely on a log watcher deployed on the ```nr_ue``` container which sniffs the logs of UERANSIM.
 
 ## Not supported
 - IPv6 usage in Docker
