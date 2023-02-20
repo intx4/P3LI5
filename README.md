@@ -108,7 +108,7 @@ python3 populate_db.py -c s%3AHSSnq7NdPPWGmWKI0q0lQITV5knUV3tn.p6D8CaL4cKsF%2Bto
 The demo consists in a Proof-of-concept for our system. You will impersonate some Law Enforcement trying to privately resolve identifiers from network captures.
 The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` you will access a GUI to be used by the law enforcement. You can play around in the GUI by observing the intercepted traffic* and sending resolution request with dynamic level of privacy.
 
-* the traffic is not actually sniffed on the network (e.g using Scapy or tcpdump) due to problem parsing the NAS protocol. Instead we rely on a log watcher deployed on the ```nr_ue``` container which sniffs the logs of UERANSIM.
+*the traffic is not actually sniffed on the network (e.g using Scapy or tcpdump) due to problem parsing the NAS protocol. Instead we rely on a log watcher deployed on the ```nr_ue``` container which sniffs the logs of UERANSIM.
 
 ## Not supported
 - IPv6 usage in Docker
