@@ -52,7 +52,7 @@ cd ..
 ./deploy.sh
 ```
 The script will automatically set the environment variables, build the containers from cache, and start them.
-Use ```sudo docker-compose down``` for stopping.
+Use ```sudo docker ps -aq | xargs sudo docker stop``` for stopping.
 
 #### Warnings
 - **It can happen that the ```docker_open5gs_default``` has conflicts with another already allocated pool. In that case you should change the subnet and IPs in ```.env``` and re-build the containers.**
