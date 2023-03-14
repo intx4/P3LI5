@@ -19,6 +19,9 @@ This repo, forked from ```docker_open5gs``` -> Docker files to build and run ope
 ### UERANSIMLI
 [Forked from UERANSIM to enable logging of registration traces at UEs](https://github.com/intx4/UERANSIMLI)
 
+#### To update
+```git pull --recurse-submodules && git submodule update --remote```
+
 ## Tested Setup
 
 Docker host machine
