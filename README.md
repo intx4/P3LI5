@@ -145,13 +145,13 @@ The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` 
 *the traffic is not actually sniffed on the network (e.g using Scapy or tcpdump) due to problem parsing the NAS protocol. Instead we rely on a log watcher deployed on the ```nr_ue``` container which sniffs the logs of UERANSIM.
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="width: 50%;">
-    <img src=".assets/start_p3li5ui.png" style="width: 100%;">
+    <img src="assets/start_p3li5ui.png" style="width: 100%;">
   </div>
   <div style="width: 50%;">
     <img src="assets/midcapture_p3li5ui.png" style="width: 100%;">
   </div>
   <div style="width: 50%;">
-    <img src="assetsresolveall_p3li5ui.png" style="width: 100%;">
+    <img src="assets/resolveall_p3li5ui.png" style="width: 100%;">
   </div>
   <div style="width: 50%;">
     <img src="assets/end_p3li5ui.png" style="width: 100%;">
