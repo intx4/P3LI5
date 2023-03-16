@@ -158,10 +158,8 @@ The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` 
   </div>
 </div>
 
-<video width="640" height="480" controls>
-  <source src="assets/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WpHpDL9VDm8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 
 
