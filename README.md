@@ -157,8 +157,7 @@ The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` 
     <img src="assets/end_p3li5ui.png" style="width: 100%;">
   </div>
 </div>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WpHpDL9VDm8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![DEMO](https://img.youtube.com/vi/WpHpDL9VDm8/0.jpg)](https://www.youtube.com/watch?v=WpHpDL9VDm8)
 
 
 
