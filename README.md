@@ -1,5 +1,36 @@
 # P3LI5
-Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical Privacy-Preserving Lawful Interception in 5G SA Core with Lattice-Based Weakly Private Information Retrieval.
+Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical Privacy-Preserving Lawful Interception on 5G Core with Lattice-Based Weakly Private Information Retrieval.
+
+## THE PROJECT
+P3LI5 is my master thesis project for my master degree at EPFL in collaboration with Armasuisse CYD campus. P3LI5 is a PoC for private lawful interception in 5G Core:
+
+### Abstract
+Lawful Interception (LI) is a security process which allows Law Enforcement Agencies (LEAs) to gain insightful data
+from mobile networks communication (e.g, network identifiers sent by devices in the network), and it is used for
+critical operations like criminal investigations or search and rescue operations. 5G is the new generation standard
+for mobile network communication developed by 3GPP. Compared to previous generations (2G, 3G, 4G/LTE), it
+offers enhancements in terms of security and users privacy. In particular, 5G security specifications mandate that
+all network long-term identifiers sent by users’ devices to the mobile network should be sent in concealed form to
+protect users’ privacy against eavesdroppers. On the other hand, this complicates LI operations relying on network
+sniffing to capture network identifiers, as LEAs now need collaboration from the Communication Service Providers
+(CSPs) to access the identifiers in unconcealed form. 5G LI specifications define a set of interfaces through which
+authorized LEAs can recover associations between short-term and long-term identifiers via a query-response
+protocol. However, this process creates a new privacy problem, as an untrusted CSPs might now be able to infer
+sensitive information about ongoing LEAs operations or about potential suspects identities, by observing the pattern
+of resolved identifiers. We thus propose P3LI5 (Practical and Privacy-Preserving Lawful Interception on 5G Core),
+a novel Information-Retrieval protocol which allows LEAs to privately query CSPs for identity resolution. P3LI5
+exploits a state-of-the-art Private Information Retrieval (PIR) scheme to prevent information leakage. Furthermore,
+in order to scale with the massive quantity of information stored by the CSPs and to meet the latency requirements
+of mission-critical deployments, P3LI5 enables LEAs to selectively allow a bounded information leakage to reduce
+the overhead of the PIR protocol and achieve a speedup of several order of magnitudes. For this, P3LI5 relies on a
+generalization of PIR called Weakly-Private Information Retrieval (WPIR). To the best of our knowledge, we present
+the first design and open-source implementation of an Information Retrieval scheme which supports selective
+information leakage: SparseWPIR. Furthermore, we implement P3LI5 enabling concurrent execution of SparseWPIR
+on multiple processors, improving performance over previous works. Finally, we implement a Proof-of-Concept
+(PoC) of P3LI5 on a virtualized 5G core by implementing a minimalist LI infrastructure and modifying well known
+open-source projects to emulate the Network Core and the Radio Access Network. To the best of our knowledge, this
+is the first proposal of a more privacy-preserving LI architecture for the new 5G Core network, which might be of
+high interest for Law Enforcement and Intelligence Agencies.
 
 ## MODULES
 The project builds on several submodules
@@ -112,8 +143,25 @@ The demo consists in a Proof-of-concept for our system. You will impersonate som
 The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` you will access a GUI to be used by the law enforcement. You can play around in the GUI by observing the intercepted traffic* and sending resolution request with dynamic level of privacy.
 
 *the traffic is not actually sniffed on the network (e.g using Scapy or tcpdump) due to problem parsing the NAS protocol. Instead we rely on a log watcher deployed on the ```nr_ue``` container which sniffs the logs of UERANSIM.
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="width: 50%;">
+    <img src=".assets/start_p3li5ui.png" style="width: 100%;">
+  </div>
+  <div style="width: 50%;">
+    <img src="assets/midcapture_p3li5ui.png" style="width: 100%;">
+  </div>
+  <div style="width: 50%;">
+    <img src="assetsresolveall_p3li5ui.png" style="width: 100%;">
+  </div>
+  <div style="width: 50%;">
+    <img src="assets/end_p3li5ui.png" style="width: 100%;">
+  </div>
+</div>
 
-## Not supported
-- IPv6 usage in Docker
+<video width="640" height="480" controls>
+  <source src="assets/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 
