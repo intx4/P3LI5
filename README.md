@@ -157,7 +157,9 @@ The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` 
     <img src="assets/end_p3li5ui.png" style="width: 100%;">
   </div>
 </div>
-[![DEMO](assets/demo_yt_shot.png)](https://www.youtube.com/watch?v=WpHpDL9VDm8)
+<a href="https://www.youtube.com/watch?v=WpHpDL9VDm8" target="_blank">
+  <img src="assets/demo_yt_shot.png" alt="Demo on Youtube">
+</a>
 
 
 
