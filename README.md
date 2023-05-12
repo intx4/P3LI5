@@ -1,8 +1,8 @@
 # P3LI5
-Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical Privacy-Preserving Lawful Interception on 5G Core with Lattice-Based Weakly Private Information Retrieval.
+Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical Privacy-Preserving Lawful Interception in 5G Core.
 
 ## THE PROJECT
-P3LI5 is my master thesis project for my master degree at EPFL in collaboration with Armasuisse CYD campus. P3LI5 is a PoC for private lawful interception in 5G Core:
+P3LI5 is a PoC for private lawful interception in 5G Core:
 
 ### Abstract
 Lawful Interception (LI) is a security process which allows Law Enforcement Agencies (LEAs) to gain insightful data
@@ -157,9 +157,6 @@ The demo will simulate 100 UEs trying to connect to the network. At ```:8080``` 
     <img src="assets/end_p3li5ui.png" style="width: 100%;">
   </div>
 </div>
-<a href="https://www.youtube.com/watch?v=WpHpDL9VDm8" target="_blank">
-  <img src="assets/demo_yt_shot.png" alt="Demo on Youtube">
-</a>
 
 
 
