@@ -1,5 +1,5 @@
 # P3LI5
-Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical Privacy-Preserving Lawful Interception in 5G Core.
+Fork of docker_open5gs modified for the P3LI5 project: Enabling Practical and Confidential Lawful Interception on 5G Core.
 
 ## THE PROJECT
 P3LI5 is a PoC for private lawful interception in 5G Core:
